@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        
+            <div class="header">
+                <a class = "btn btn-success" href="{% url 'add_pengunjung' %} ">+ Tambahkan Pengunjung Baru</a>
+            </div>
+       
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Deskripsi</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for p in pengunjung %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ p.nama }}</td>
+                    <td>{{ p.deskripsi }}</td>
+                    <td>{{ p.kategori }}</td>
+                    <td>
+                      <a class="btn btn-warning btn-sm" href="{% url 'update_pengunjung' p.id %}">update</a>
+                      <a onclick="alert('Yakin mau dihapus?')" class="btn btn-danger btn-sm" href="{% url 'delete_pengunjung' p.id %}">delete</a>
+                    </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="body">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Kategori</label>
+              <select name="kategori" id="" class="form-control">
+
+                {% for kategori in kategori %}
+                {% if get_pengunjung.kategori == kategori %}
+                <option value="{{ kategori.nama }}" selected="selected">{{ kategori.nama}} </option>
+                {% else %}
+                <option value="{{ kategori.nama }}">{{ kategori.nama}} </option>
+                {% endif %}
+                {% endfor %}
+
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nama</label>
+              <input type="text" class="form-control" name="nama" value="{{ get_daftar.nama }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" placeholder="isi deskripsi pengunjung" >{{ get_daftar.deskripsi }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    
+</div>
+
+{% endblock content %}
